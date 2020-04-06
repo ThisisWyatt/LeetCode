@@ -131,7 +131,6 @@ public class TreeDemo {
                 stackMark.pop();
                 System.out.println(stack.pop().data);
             }
-
             if(!stack.empty() && stackMark.peek() == left)
             {//如果是从左子节点返回父节点，则将标记改为右子节点
                 stackMark.pop();
@@ -147,6 +146,5 @@ public class TreeDemo {
         TreeNode tree = creatTree(new TreeNode());
         System.out.println("----中序遍历----");
         postOrderWithoutRecursive(tree);
-
     }
 }
