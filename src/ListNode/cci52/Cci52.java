@@ -29,13 +29,17 @@ public class Cci52 {
         }
         return node1;
     }
-
+//  寻找公共后缀的第一次元素
     private static int common(int[] a, int[] b) {
         int i = 0;
         int j = 0;
         int[] aa = a;
         int[] bb = b;
         while (true) {
+            if (a[i] == b[j])
+                return a[i];
+            if(a==bb&b==aa&&i==bb.length-1)
+                return -1;
             i++;
             if (a == aa && i == a.length) {
                 a = bb;
@@ -46,10 +50,33 @@ public class Cci52 {
                 b = aa;
                 j = 0;
             }
-            if (a[i] == b[j])
+
+        }
+    }
+//  寻找公共后缀的第一个字符
+    private static char commonForString(String str1,String str2){
+        char[] a=str1.toCharArray();
+        char[] b=str2.toCharArray();
+        char[] a1=a;
+        char[] b1=b;
+        int i=0;
+        int j=0;
+        while (true){
+            if(a[i]==b[j]){
                 return a[i];
-            if (a == bb && i == bb.length - 1)
-                return -1;
+            }
+            if(a==b1&&b==a1&&i==a.length-1)//如果是第一次交换后都遍历到最后但仍然没有相同 则退出
+                return '^';
+            i++;
+            if(i==a.length-1){
+                a=b1;
+                i=0;
+            }
+            j++;
+            if(j==b.length-1){
+                b=a1;
+                j=0;
+            }
         }
     }
 
@@ -90,10 +117,15 @@ public class Cci52 {
 //        System.out.println(x.value);
 
 
-        int[] a = {4, 5, 6, 7, 8, 9};
-        int[] b = {10, 11, 12};
-        int commonNum = common(a, b);
-        System.out.println(commonNum);
+//        int[] a = {2,5,6};
+//        int[] b = {1,2,3,5,6};
+//        int commonNum = common(a, b);
+//        System.out.println(commonNum);
+
+        String a="ASDHJKL";
+        String b="QWEHJKL";
+        char x=commonForString(a,b);
+        System.out.println(x);
 
 
     }

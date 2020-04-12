@@ -10,7 +10,6 @@ import java.util.Map;
  * Date 2020/4/3 12:53
  **/
 public class LengthOfLongestSubstring {
-
     //    滑动窗口
     private static int longest(String str) {
         int length = str.length();
@@ -29,9 +28,19 @@ public class LengthOfLongestSubstring {
         return longest;
     }
 
+    private static boolean judge(String s, int left, int right, char c) {
+        for (int i = left; i <= right; i++) {
+            if (s.charAt(i) == c)
+                return false;
+        }
+        return true;
+    }
+
+    //    采用HashMap的滑动窗口
     private static int LM(String s) {
-        if (s.length() == 0)
+        if (s.length() == 0) {
             return 0;
+        }
         int longest = 0;
         int head = 0;
         Map<Character, Integer> map = new HashMap<>();
@@ -50,15 +59,6 @@ public class LengthOfLongestSubstring {
             }
         }
         return Math.max(longest, s.length() - head); //判断最后一次的是否与之前最大的longest相同
-    }
-
-    //    采用HashMap的滑动窗口
-    private static boolean judge(String s, int left, int right, char c) {
-        for (int i = left; i <= right; i++) {
-            if (s.charAt(i) == c)
-                return false;
-        }
-        return true;
     }
 
     public static void main(String[] args) {
